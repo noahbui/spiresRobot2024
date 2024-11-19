@@ -6,6 +6,8 @@ from robotConfig import webserverConstructorOrNone
 from robotConfig import dashboardOrNone
 from humanInterface.driverInterface import DriverInterface
 from humanInterface.ledControl import LEDControl
+from humanInterface.operatorInterface import OperatorInterface
+from spiresRobot2024.climberControl.climbControl import ClimberControl
 
 from drivetrain.drivetrainControl import DrivetrainControl
 from utils.segmentTimeTracker import SegmentTimeTracker
@@ -54,10 +56,10 @@ class MyRobot(wpilib.TimedRobot):
         self.dbg.toPrint.update({'error': False})
 
         self.driveTrain = DrivetrainControl()
-        # self.climberControl = ClimberControl()
+        self.climberControl = ClimberControl()
 
         self.dInt = DriverInterface()
-        # self.opInt = OperatorInterface()
+        self.opInt = OperatorInterface()
 
         self.ledCtrl = LEDControl()
 
@@ -110,7 +112,7 @@ class MyRobot(wpilib.TimedRobot):
         self.stt.perhapsMark(self.markDriveTrainName)
         self.ledCtrl.update()
 
-        # self.climberControl.update()
+        self.climberControl.update()
 
         # self.noteHandler.update()
 
@@ -167,7 +169,7 @@ class MyRobot(wpilib.TimedRobot):
 
     def teleopPeriodic(self):
         self.dInt.update()
-        # self.opInt.update()
+        self.opInt.update()
 
         self.dbg.print("robot", "running game mode")
         self.dbg.print("hi", f"{self.dInt.getVxCmd()} {self.dInt.getVyCmd()} {self.dInt.getVtCmd()}")
@@ -187,7 +189,7 @@ class MyRobot(wpilib.TimedRobot):
                 self.dInt.getVtCmd()
             )
 
-        # self.climberControl.setClimbCmdPercentage(self.opInt.getClimberCmdPercentage())
+        self.climberControl.setClimbCmdPercentage(self.opInt.getClimberCmdPercentage())
 
 
         # self.noteHandler.intakeStartCmd = self.opInt.getStartIntakeCmd()

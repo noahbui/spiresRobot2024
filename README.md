@@ -21,7 +21,8 @@ Before developing code on a new computer, perform the following:
 ```cmd
     python -m pip install --upgrade pip
     python -m pip install robotpy
-    python -m robotpy_installer download-python
+    python -m robotpy installer
+    python -m robotpy installer download-python
     python -m pip install -r requirements_dev.txt
 ```
 
@@ -80,7 +81,7 @@ Run the `WPILib: Test Robot Code` task in VSCode's command palette.
 
 OR
 
-`robotpy test`
+`python -m robotpy test`
 
 ## Simulating
 
@@ -88,7 +89,7 @@ Run the `WPILib: Simulate Robot Code` task in VSCode's command palette.
 
 OR
 
-`robotpy sim`
+`python -m robotpy sim`
 
 ## RIO First-time Installation
 
@@ -180,3 +181,12 @@ The 2024 roboio 2.0 image is here:
 C:\Program Files (x86)\National Instruments\LabVIEW 2023\project\roboRIO Tool\FRC Images\SD Images
 
 use roborio team number setter to set the team number
+
+Test code with pylint
+1. run pylint command
+2. type 'robotpy test'
+3. type 'robotpy sim'
+4. type 'robotpy deploy'
+
+# do this when deploying - from coach Mike
+'robotpy deploy --skip-tests --nc --no-uninstall'

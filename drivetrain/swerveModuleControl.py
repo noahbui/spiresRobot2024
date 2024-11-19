@@ -26,6 +26,7 @@ class SwerveModuleControl:
     Control logic for one swerve drive module
     """
 
+    # pylint: disable=too-many-positional-arguments
     def __init__(
         self,
         moduleName,

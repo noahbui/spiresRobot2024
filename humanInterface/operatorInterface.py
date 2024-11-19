@@ -18,10 +18,12 @@ class OperatorInterface:
 
         self.climberCmd = 0.0 # Percentage of max climb speed
         self.climbResetCmd = False # Re-zero climbing mechanism
+        self.count = 0
 
     def update(self):
         """Main update - call this once every 20ms"""
-
+        # if self.count % 100 == 0:
+        #     print(f"In Operaterinterface Update {self.count}")
         if self.ctrl.isConnected():
             self.startIntake = self.ctrl.getYButtonPressed()
             self.startShooter = self.ctrl.getAButtonPressed()
@@ -44,6 +46,7 @@ class OperatorInterface:
             self.connectedFault.setFaulted()
 
         log("OI climberCmd", self.climberCmd, "pct")
+        self.count += 1
 
     def getStartIntakeCmd(self):
         return self.startIntake
